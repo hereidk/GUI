@@ -8,6 +8,7 @@ import tkinter
 import numpy as np
 import sys
 import os
+import tkinter.filedialog as tkFileDialog
 
 class GUI(object):
     '''
@@ -69,3 +70,21 @@ class GUI(object):
         tkinter.Button(master, text='OK', command = cancel).grid(row=1)
         
         tkinter.mainloop()
+        
+    def browsetoFile(self, title, validfiletype='.csv'):
+        # Browse to directory of portfolio file
+        root = tkinter.Tk()
+        root.withdraw()
+        currdir = os.getcwd()
+        validfile = False
+        while validfile == False: 
+            tempdir = tkFileDialog.askopenfilename(parent=root, initialdir=currdir, title=title)
+            if len(tempdir) > 0:
+    #             print ('You chose %s' % tempdir)
+                if tempdir.endswith(validfiletype):
+                    portfolio_file = tempdir
+                    validfile = True
+                else:
+                    print("Error: File type must be %s." % (validfiletype))
+                   
+        return portfolio_file         
