@@ -78,9 +78,9 @@ class GUI(object):
         currdir = os.getcwd()
         validfile = False
         while validfile == False: 
+            # Continue asking until valid file type is chosen. Had else to default to auto-named file.
             tempdir = tkFileDialog.askopenfilename(parent=root, initialdir=currdir, title=title)
             if len(tempdir) > 0:
-    #             print ('You chose %s' % tempdir)
                 if tempdir.endswith(validfiletype):
                     portfolio_file = tempdir
                     validfile = True
