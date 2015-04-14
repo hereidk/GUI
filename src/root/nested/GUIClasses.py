@@ -38,8 +38,8 @@ class GUI(object):
         var.set(choices[0]) # Initial value
         option = tkinter.OptionMenu(root, var, *choices)
         option.pack(side='left', padx=10, pady=10)
-        scrollbar = tkinter.Scrollbar(root)
-        scrollbar.pack(side='right', fill='y')
+#         scrollbar = tkinter.Scrollbar(root)
+#         scrollbar.pack(side='right', fill='y')
         
         def get_choice():
             select_choice = var.get()
@@ -82,12 +82,12 @@ class GUI(object):
             tempdir = tkFileDialog.askopenfilename(parent=root, initialdir=currdir, title=title)
             if len(tempdir) > 0:
                 if tempdir.endswith(validfiletype):
-                    portfolio_file = tempdir
+                    selected_file = tempdir
                     validfile = True
                 else:
                     print("Error: File type must be %s." % (validfiletype))
                    
-        return portfolio_file         
+        return selected_file         
 
     def getTextInput(self, title):
         
