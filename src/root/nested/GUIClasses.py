@@ -88,3 +88,57 @@ class GUI(object):
                     print("Error: File type must be %s." % (validfiletype))
                    
         return portfolio_file         
+
+    def getTextInput(self, title):
+        
+        '''
+        Get user-defined payout structure. Takes any units.
+        AAL calculated in same units, loss cost relative to maximum payout
+        '''
+        master = tkinter.Tk()
+        
+        # Add label to input request
+        tkinter.Label(master, text=title).grid(row=0)
+        
+        # Get user input
+        e0 = tkinter.Entry(master)
+        
+        # Default value = 0
+        e0.insert(0,0)
+        
+        # Set window layout
+        e0.grid(row=1, column=0)
+        
+        e0.focus_set()
+        
+        # OK button, gets user payout structure
+        def getInput(): 
+            try:
+                input = str(e0.get())
+            except ValueError:
+    #             master.destroy()
+    #             
+    #             tkinter.Label(master, text='Invalid payout-please enter numeric value.').grid(row=1)
+    #             button = tkinter.Button(master, text='OK', command=cancel)
+    #             button.grid(row=1)
+    #             
+    #             tkinter.mainloop()
+                self.textBox("Invalid input, please try again.")
+                sys.exit()
+            master.quit()
+#             global globpayouts
+#             globpayouts = payouts
+            return input
+    
+        # Exit button
+        def cancel():
+            master.destroy()
+            sys.exit()
+            
+        button = tkinter.Button(master, text='OK', command=getInput, padx=10)
+        button.grid(row=2, column=0)
+        tkinter.Button(master, text='Cancel', command = cancel).grid(row=2, column=1)
+        
+        tkinter.mainloop()
+        button.invoke()
+        master.withdraw()
