@@ -92,8 +92,7 @@ class GUI(object):
     def getTextInput(self, title):
         
         '''
-        Get user-defined payout structure. Takes any units.
-        AAL calculated in same units, loss cost relative to maximum payout
+        Get user input via text box.
         '''
         master = tkinter.Tk()
         
