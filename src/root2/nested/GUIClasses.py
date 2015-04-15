@@ -5,7 +5,6 @@ Created on Mar 31, 2015
 '''
 
 import tkinter
-import numpy as np
 import sys
 import os
 import tkinter.filedialog as tkFileDialog
@@ -25,11 +24,10 @@ class GUI(object):
         '''
         
         
-    def selectFromList(self, title):
+    def selectFromList(self, title, choices):
         '''
         Drop-down menu to select from list of choices
         '''
-        choices = ['Bob', 'Bob2']
         
         root = tkinter.Tk()
         root.geometry("%dx%d+%d+%d" % (330, 80, 200, 150))
@@ -101,34 +99,21 @@ class GUI(object):
         tkinter.Label(master, text=title).grid(row=0)
         
         # Get user input
-        e0 = tkinter.Entry(master)
+        v = tkinter.StringVar()
+        e0 = tkinter.Entry(master, textvariable=v)
         
-        # Default value = 0
-        e0.insert(0,0)
+        # Default value
+        v.set('')
         
         # Set window layout
         e0.grid(row=1, column=0)
         
         e0.focus_set()
         
-        # OK button, gets user payout structure
+        # OK button
         def getInput(): 
-            try:
-                input = str(e0.get())
-            except ValueError:
-    #             master.destroy()
-    #             
-    #             tkinter.Label(master, text='Invalid payout-please enter numeric value.').grid(row=1)
-    #             button = tkinter.Button(master, text='OK', command=cancel)
-    #             button.grid(row=1)
-    #             
-    #             tkinter.mainloop()
-                self.textBox("Invalid input, please try again.")
-                sys.exit()
             master.quit()
-#             global globpayouts
-#             globpayouts = payouts
-            return input
+            return v.get()
     
         # Exit button
         def cancel():
@@ -140,5 +125,6 @@ class GUI(object):
         tkinter.Button(master, text='Cancel', command = cancel).grid(row=2, column=1)
         
         tkinter.mainloop()
-        button.invoke()
+        getstr = v.get()
         master.withdraw()
+        return getstr
