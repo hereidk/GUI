@@ -25,10 +25,11 @@ class GUI(object):
         '''
         
         
-    def selectFromList(self, title, choices):
+    def selectFromList(self, title):
         '''
         Drop-down menu to select from list of choices
         '''
+        choices = ['Bob', 'Bob2']
         
         root = tkinter.Tk()
         root.geometry("%dx%d+%d+%d" % (330, 80, 200, 150))
