@@ -96,7 +96,7 @@ class GUI(object):
         master = tkinter.Tk()
         
         # Add label to input request
-        tkinter.Label(master, text=title).grid(row=0)
+        tkinter.Label(master, text=title).grid(row=0, column=0, columnspan=2)
         
         # Get user input
         v = tkinter.StringVar()
@@ -106,7 +106,7 @@ class GUI(object):
         v.set('')
         
         # Set window layout
-        e0.grid(row=1, column=0)
+        e0.grid(row=1, column=0, columnspan=2)
         
         e0.focus_set()
         
